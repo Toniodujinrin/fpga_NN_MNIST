@@ -14,7 +14,7 @@ weights/
 data/
 biases/
 inputs/
-.venv/
+training/.venv/
 
 # Quartus generated files
 *.rpt
