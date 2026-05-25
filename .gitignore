@@ -1,0 +1,63 @@
+# Quartus project files - generated outputs
+*.qpf
+*.qsf.bak
+*.qdf
+*.qws
+
+# Compilation output directories
+db/
+incremental_db/
+output_files/
+simulation/
+obj_dir 
+weights/
+data/
+biases/
+inputs/
+
+# Quartus generated files
+*.rpt
+*.smsg
+*.summary
+*.pin
+*.sof
+*.pof
+*.rbf
+*.svf
+*.ttf
+*.cdf
+*.jdi
+*.sdc.bak
+*.qsys.bak
+
+# Timing analysis
+*.sta.rpt
+*.tan.rpt
+*.tan.smsg
+
+# Fitter/Assembler outputs
+*.fit.rpt
+*.fit.smsg
+*.asm.rpt
+*.asm.smsg
+
+# Compilation database
+*.qdb
+*.qdal
+
+# Temporary/lock files
+*.lock
+*.bak
+*~
+
+# ModelSim / QuestaSim simulation
+work/
+transcript
+vsim.wlf
+*.vcd
+*.wlf
+
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
