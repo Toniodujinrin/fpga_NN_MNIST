@@ -5,13 +5,13 @@ module max_finder #(
   input clk, reset,
   input start,
   input [(DATA_WIDTH*LAYER_N)-1:0] data,
-  output reg [$clog2(LAYER_N)-1:0] out,
+  output reg [DATA_WIDTH-1:0] out,
   output reg out_valid
 );
 
   reg [DATA_WIDTH-1:0] max_val;
-  reg [$clog2(LAYER_N)-1:0] max_pointer;   
-  reg [$clog2(LAYER_N)-1:0] current_pointer;
+  reg [$clog2(LAYER_N):0] max_pointer;   
+  reg [$clog2(LAYER_N):0] current_pointer;
   reg [(DATA_WIDTH*LAYER_N)-1:0] data_reg;
   reg current_state;
 

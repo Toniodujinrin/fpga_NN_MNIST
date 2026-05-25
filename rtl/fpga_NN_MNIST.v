@@ -14,47 +14,60 @@ module fpga_NN_MNIST
 (
   input clk, 
   input reset,
-  output [$clog2(N_NEURONS_LAYER_3)-1:0] nn_output, 
   output nn_output_valid
+
+
+  //AXI Signals
+  //write address channel  
+  input aw_valid, 
+  input []  aw_addr,
+  output reg aw_ready, 
+  input aw_prot
+
+  //write data channel 
+  input w_valid, 
+  output reg w_ready, 
+  input [DATA_WIDTH-1:0] w_data,
+  input [clog2(clog8(DATA_WIDTH))-1:0] w_strobe, 
+
+  //write response channel 
+  output reg b_valid, 
+  input b_ready, 
+  output reg b_resp 
+  
+  //read addr signals 
+  input ar_addr,
+  output reg ar_ready,
+  input ar_valid,
+  input ar_prot, 
+  //read data signals 
+  output reg [DATA_WIDTH-1:0] r_data, 
+  output reg r_valid,
+  input r_ready,
+  output r_resp
 ); 
-	localparam ROM_ADDR_WIDTH = $clog2(N_NETWORK_INPUTS);
+
+  
 	localparam IDLE = 2'b00; 
-   localparam INFERENCE	= 2'b01;  
+  localparam INFERENCE	= 2'b01;  
 	localparam MAX_FINDING = 2'b10; 
 	
 	reg [1:0] current_state; 
 	
-	
+	//network signals 
 	wire network_inference_sample_ready; 
 	wire network_inference_ready;
-	wire [DATA_WIDTH-1:0] input_rom_data_value; 
-	wire input_rom_data_valid;
-	reg [ROM_ADDR_WIDTH-1:0] input_rom_addr; 
 	reg inference_start; 
+
+  //max finder signals
 	reg [(DATA_WIDTH*N_NEURONS_LAYER_3)-1:0] max_finder_data_in; 
 	wire [(DATA_WIDTH*N_NEURONS_LAYER_3)-1:0] network_output;  
-  wire network_output_valid; 
-	reg max_finder_start; 
-  reg read_en; 
-  reg [ROM_ADDR_WIDTH-1:0] rom_counter;  
+  reg max_finder_start; 
   
-	input_rom
-	#( 
-		.DATA_WIDTH(DATA_WIDTH),  
-		.N_INPUTS(N_NETWORK_INPUTS), 
-		.INPUT_ROM_FILE(INPUT_ROM_FILE), 
-		.ADDR_WIDTH(ROM_ADDR_WIDTH) 
-	)
-  INPUT_ROM
-	(
-		.clk(clk), 
-		.reset(reset), 
-		.data_out(input_rom_data_value), 
-		.out_valid(input_rom_data_valid),
-    .read_en(read_en), 
-		.addr_in(input_rom_addr) 
-	); 
-
+  //nn signals 
+  wire network_output_valid; 
+	reg read_en; 
+  
   
   network
   #(
@@ -102,9 +115,10 @@ module fpga_NN_MNIST
 		if(reset)
 		begin 
 			current_state <= IDLE;
+      //axi 
+      w_ready <= 0; 
+      aw_ready <= 0; 
 			inference_start <= 0; 
-			input_rom_addr <= 0;
-      rom_counter <= 0; 
 			max_finder_start <= 0; 	
 		end 
 		else 
@@ -176,22 +190,13 @@ module fpga_NN_MNIST
 			endcase
 		end 
 	end
-
-
-  // //debug
-  // always@(posedge clk) 
-  // begin
-  //   $display("[%0t] state=%0d | sample_ready=%b | output_valid=%b | addr=%0d", 
-  //       $time,
-  //       current_state,
-  //       network_inference_sample_ready,
-  //       network_output_valid,
-  //       input_rom_addr
-  //   );
-  // end
-  //
 endmodule
 
 
 
-
+function integer clog8
+  input integer value 
+  begin 
+    clog8 = clog2(value)/clog2(8); 
+  end 
+endfunction 
