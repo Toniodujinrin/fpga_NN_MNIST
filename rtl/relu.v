@@ -10,7 +10,7 @@ module relu #(
       if (|data_in[31:23])
         data_out = 16'h7FFF;
       else
-        data_out = data_in[23:8]; // Correctly extract Q5.10
+        data_out = data_in[23:8]; // Correctly extract Q8.8
     end else begin 
       data_out = 16'h0000;
     end 

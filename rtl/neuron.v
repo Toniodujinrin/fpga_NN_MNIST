@@ -5,7 +5,6 @@ module neuron #(
   N_WEIGHTS = 784, 
   SIGMOID_INPUT_WIDTH = 5, 
   ACC_TYPE = "sigmoid",
-  WEIGHT_INT_WIDTH = 14, 
   WEIGHT_FILE = "weights/weight_file_layer_1_neuron_0.mem", //weight file for this particular neuron 
   BIAS_FILE="biases/bias_file_layer_1_neuron_0.mem", //bias file for this particular neuron 
   BIAS_WIDTH = 32

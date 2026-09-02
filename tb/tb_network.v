@@ -7,7 +7,6 @@ module tb_network;
     localparam N_NEURONS_LAYER_3   = 10;
     localparam ACC_TYPE            = "reLU";     // matches fpga_NN_MNIST.v
     localparam SIGMOID_INPUT_WIDTH = 5;
-    localparam WEIGHT_INT_WIDTH    = 1;
 
     // ----------------- Signals -----------------
     reg  clk;
@@ -41,8 +40,7 @@ module tb_network;
         .N_NEURONS_LAYER_3(N_NEURONS_LAYER_3),
         .N_NETWORK_INPUTS(N_NETWORK_INPUTS),
         .ACC_TYPE(ACC_TYPE),
-        .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
-        .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH)
+        .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH)
     ) DUT (
         .clk                        (clk),
         .reset                      (reset),

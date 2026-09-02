@@ -6,7 +6,6 @@ module fpga_NN_MNIST_RTL
 	N_NEURONS_LAYER_2 = 64, 
 	N_NEURONS_LAYER_3 = 10, 
 	ACC_TYPE = "reLU", 
-	WEIGHT_INT_WIDTH = 1, 
 	SIGMOID_INPUT_WIDTH = 5, 
 	DATA_WIDTH = 16, 
   AXI_ADDR_WIDTH = 8, 
@@ -79,8 +78,7 @@ module fpga_NN_MNIST_RTL
     .N_NEURONS_LAYER_3(N_NEURONS_LAYER_3), 
     .N_NETWORK_INPUTS(N_NETWORK_INPUTS),
     .ACC_TYPE(ACC_TYPE), 
-    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH)
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH)
   )
   NETWORK 
   (
@@ -198,12 +196,7 @@ module fpga_NN_MNIST_RTL
     end 
   end
   
-  /*always@(posedge clk)
-  begin 
-    if(network_output_valid)
-      $display("raw network output %h", network_output); 
 
-  end*/ 
   endmodule
 
 

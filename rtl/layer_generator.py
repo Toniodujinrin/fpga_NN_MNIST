@@ -12,7 +12,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_{LAYER_NUM}_neuron_{i}.mem"),
     .BIAS_FILE("biases/bias_file_layer_{LAYER_NUM}_neuron_{i}.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -40,7 +39,6 @@ module layer_{LAYER_NUM}
   N_INPUTS              = 784,
   SIGMOID_INPUT_WIDTH   = 5,
   ACC_TYPE              = "reLU",
-  WEIGHT_INT_WIDTH      = 1,
   BIAS_WIDTH            = 32
 )
 (

@@ -8,7 +8,6 @@ module tb_fpga_NN_MNIST;
     localparam N_NEURONS_LAYER_2 = 64; 
     localparam N_NEURONS_LAYER_3 = 10; 
     localparam ACC_TYPE = "reLU";
-    localparam WEIGHT_INT_WIDTH = 1; 
     localparam SIGMOID_INPUT_WIDTH = 5; 
     localparam DATA_WIDTH = 16;
     localparam AXI_ADDR_WIDTH = 8; 
@@ -55,7 +54,6 @@ fpga_NN_MNIST
 	.N_NEURONS_LAYER_2(N_NEURONS_LAYER_2), 
 	.N_NEURONS_LAYER_3(N_NEURONS_LAYER_3), 
 	.ACC_TYPE(ACC_TYPE), 
-	.WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH), 
 	.SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH), 
 	.DATA_WIDTH(DATA_WIDTH), 
   .AXI_ADDR_WIDTH(AXI_ADDR_WIDTH), 

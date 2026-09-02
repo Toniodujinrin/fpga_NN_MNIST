@@ -4,7 +4,7 @@
 //
 // Compile:
 //   iverilog -o sim tb_layer_1.v layer_1.v neuron.v \
-//            weight_mem.v bias_mem.v signed_adder.v relu.v sigmoid.v
+//            weight_mem.v bias_mem.v relu.v sigmoid.v
 //   vvp sim | tee run.log
 // ================================================================
 module tb_layer_1;
@@ -38,7 +38,6 @@ layer_1 #(
     .N_INPUTS           (N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(5),
     .ACC_TYPE           ("reLU"),
-    .WEIGHT_INT_WIDTH   (1),
     .BIAS_WIDTH         (2*DATA_WIDTH)
 ) DUT (
     .clk          (clk),

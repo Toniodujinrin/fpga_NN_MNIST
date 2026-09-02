@@ -67,8 +67,8 @@ os.makedirs("biases",exist_ok=True)
 # ==================================================
 
 SCALE_FRAC = 8                    
-SCALE_WEIGHT = 1 << SCALE_FRAC      # 16384
-SCALE_BIAS   = 1 << (2 * SCALE_FRAC)  # 268435456  (x*w scaling)
+SCALE_WEIGHT = 1 << SCALE_FRAC      # 256
+SCALE_BIAS   = 1 << (2 * SCALE_FRAC)  # 65536  (x*w scaling)
 
 def export_layer_weights(weights, layer_num):
     weights_np = weights.detach().numpy()
@@ -79,7 +79,7 @@ def export_layer_weights(weights, layer_num):
         with open(filename, "w") as f:
             for value in row:
                 val = int(value)                    # ← force Python int (unlimited)
-                # proper saturation for signed 16-bit Q1.14
+                # proper saturation for signed 16-bit Q8.8
                 val = max(-32768, min(32767, val))
                 binary_string = f"{val & 0xFFFF:016b}"
                 f.write(binary_string + "\n")
@@ -126,8 +126,8 @@ def export_mnist_sample_to_mif(index=0):
     
     # 4. Save to input_1.mif
     # We reuse your existing logic concept:
-    # 1024 is the multiplier for your Q5.10 fixed point
-    SCALE = 1 << 10 
+    # 256 is the multiplier for your Q8.8 fixed point
+    SCALE = 1 << 8 
     
     with open("input_1.mif", "w") as f:
         for row in img_data:

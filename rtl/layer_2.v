@@ -9,7 +9,6 @@ module layer_2
   N_INPUTS              = 784,
   SIGMOID_INPUT_WIDTH   = 5,
   ACC_TYPE              = "reLU",
-  WEIGHT_INT_WIDTH      = 1,
   BIAS_WIDTH            = 32
 )
 (
@@ -36,7 +35,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_0.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_0.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -59,7 +57,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_1.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_1.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -82,7 +79,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_2.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_2.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -105,7 +101,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_3.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_3.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -128,7 +123,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_4.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_4.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -151,7 +145,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_5.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_5.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -174,7 +167,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_6.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_6.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -197,7 +189,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_7.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_7.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -220,7 +211,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_8.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_8.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -243,7 +233,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_9.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_9.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -266,7 +255,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_10.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_10.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -289,7 +277,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_11.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_11.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -312,7 +299,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_12.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_12.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -335,7 +321,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_13.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_13.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -358,7 +343,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_14.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_14.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -381,7 +365,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_15.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_15.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -404,7 +387,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_16.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_16.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -427,7 +409,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_17.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_17.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -450,7 +431,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_18.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_18.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -473,7 +453,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_19.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_19.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -496,7 +475,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_20.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_20.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -519,7 +497,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_21.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_21.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -542,7 +519,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_22.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_22.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -565,7 +541,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_23.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_23.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -588,7 +563,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_24.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_24.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -611,7 +585,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_25.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_25.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -634,7 +607,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_26.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_26.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -657,7 +629,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_27.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_27.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -680,7 +651,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_28.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_28.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -703,7 +673,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_29.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_29.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -726,7 +695,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_30.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_30.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -749,7 +717,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_31.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_31.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -772,7 +739,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_32.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_32.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -795,7 +761,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_33.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_33.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -818,7 +783,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_34.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_34.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -841,7 +805,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_35.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_35.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -864,7 +827,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_36.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_36.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -887,7 +849,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_37.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_37.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -910,7 +871,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_38.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_38.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -933,7 +893,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_39.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_39.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -956,7 +915,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_40.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_40.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -979,7 +937,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_41.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_41.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -1002,7 +959,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_42.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_42.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -1025,7 +981,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_43.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_43.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -1048,7 +1003,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_44.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_44.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -1071,7 +1025,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_45.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_45.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -1094,7 +1047,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_46.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_46.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -1117,7 +1069,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_47.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_47.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -1140,7 +1091,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_48.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_48.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -1163,7 +1113,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_49.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_49.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -1186,7 +1135,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_50.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_50.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -1209,7 +1157,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_51.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_51.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -1232,7 +1179,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_52.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_52.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -1255,7 +1201,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_53.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_53.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -1278,7 +1223,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_54.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_54.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -1301,7 +1245,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_55.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_55.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -1324,7 +1267,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_56.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_56.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -1347,7 +1289,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_57.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_57.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -1370,7 +1311,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_58.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_58.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -1393,7 +1333,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_59.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_59.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -1416,7 +1355,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_60.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_60.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -1439,7 +1377,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_61.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_61.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -1462,7 +1399,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_62.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_62.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
@@ -1485,7 +1421,6 @@ neuron
     .N_WEIGHTS(N_WEIGHTS),
     .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
     .ACC_TYPE(ACC_TYPE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
     .WEIGHT_FILE("weights/weight_file_layer_2_neuron_63.mem"),
     .BIAS_FILE("biases/bias_file_layer_2_neuron_63.mem"),
     .BIAS_WIDTH(BIAS_WIDTH)
