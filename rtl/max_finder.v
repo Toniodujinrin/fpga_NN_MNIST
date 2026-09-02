@@ -10,11 +10,12 @@ module max_finder #(
 );
 
   reg [DATA_WIDTH-1:0] max_val;
-  reg [$clog2(LAYER_N):0] max_pointer;   
-  reg [$clog2(LAYER_N):0] current_pointer;
+  reg [DATA_WIDTH-1:0] max_pointer;   
+  reg [DATA_WIDTH-1:0] current_pointer;
   reg [(DATA_WIDTH*LAYER_N)-1:0] data_reg;
   reg current_state;
-
+  reg [DATA_WIDTH-1:0] candidate; 
+  
   localparam IDLE = 0;
   localparam SEARCH = 1;
 
@@ -52,7 +53,7 @@ module max_finder #(
         begin
           if(current_pointer < LAYER_N)   
           begin
-            reg [DATA_WIDTH-1:0] candidate = data_reg[((current_pointer+1)*DATA_WIDTH)-1 -: DATA_WIDTH];
+            candidate = data_reg[((current_pointer+1)*DATA_WIDTH)-1 -: DATA_WIDTH];
             if($signed(max_val) < $signed(candidate))
             begin
               max_val     <= candidate;

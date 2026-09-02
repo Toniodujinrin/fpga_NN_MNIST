@@ -1,11 +1,10 @@
 module
-
 network
 #(
   parameter 
   DATA_WIDTH = 16, 
-  N_NEURONS_LAYER_1 = 30, 
-  N_NEURONS_LAYER_2 = 30,  
+  N_NEURONS_LAYER_1 = 64, 
+  N_NEURONS_LAYER_2 = 64,  
   N_NEURONS_LAYER_3 = 10, 
   N_NETWORK_INPUTS = 784,
   ACC_TYPE = "sigmoid", 
@@ -20,7 +19,7 @@ network
   output reg network_inference_ready, //true if the network has just completed an inference, or if no inference has started at all 
   output wire network_output_valid, 
   input wire network_input_valid, 
-  input wire inference_start, 
+  input wire inference_start
 ); 
   localparam WEIGHT_WIDTH = DATA_WIDTH; 
   localparam BIAS_WIDTH = 2*DATA_WIDTH; 
@@ -40,6 +39,7 @@ network
   wire layer_1_serializer_busy; 
   wire layer_1_fifo_full; 
   wire layer_1_fifo_empty; 
+  wire layer_1_output_valid; 
 
   //LAYER 2 SIGNALS
   wire layer_2_output_valid; 
@@ -99,9 +99,8 @@ network
 	
 	sync_fifo
 	#( 
-	  .FIFO_SIZE(N_NEURONS_LAYER_1+2), //EXTRA SPACE IN FIFO 
-	  .ADDR_WIDTH($clog2(N_NEURONS_LAYER_1+2)), 
-	  .DATA_WIDTH(DATA_WIDTH)
+	  .FIFO_SIZE(2**($clog2(N_NEURONS_LAYER_1))), 
+    .DATA_WIDTH(DATA_WIDTH)
 	)
 	LAYER_1_OUTPUT_FIFO
 	(
@@ -160,8 +159,7 @@ network
 	
 	sync_fifo
 	#( 
-	  .FIFO_SIZE(N_NEURONS_LAYER_2+2), //EXTRA SPACE IN FIFO 
-	  .ADDR_WIDTH($clog2(N_NEURONS_LAYER_2+2)), 
+	  .FIFO_SIZE(2**($clog2(N_NEURONS_LAYER_2))), //EXTRA SPACE IN FIFO 
 	  .DATA_WIDTH(DATA_WIDTH)
 	)
 	LAYER_2_OUTPUT_FIFO
@@ -270,19 +268,4 @@ network
 			endcase 
 		end 
   end
-
-  always@(posedge clk) 
-  begin
-    $display("[%0t] network_input_value: %h | layer_1_output_value: %h| layer_1_output_valid : %b | layer_2_output_value :%h | layer_2_output_valid :%b | layer_3_output_value: %h, layer_3_output_valid: %b ", 
-        $time,
-        network_input_value,
-        layer_1_output_values, 
-        layer_1_output_valid, 
-        layer_2_output_values, 
-        layer_2_output_valid, 
-        layer_3_output_values, 
-        layer_3_output_valid
-      );
-  end
-
 endmodule 

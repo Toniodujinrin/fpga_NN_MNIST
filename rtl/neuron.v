@@ -32,16 +32,16 @@ module neuron #(
   reg [DATA_WIDTH-1:0] x_value_product_operand; 
   wire [2*DATA_WIDTH-1:0] product; 
   reg [2*DATA_WIDTH-1:0] sum_operand_1; 
-  wire  [2*DATA_WIDTH-1:0] adder_result; 
-  wire sum_negative;
-  wire sum_overflow; 
-  wire sum_zero; 
-  wire sum_cout;
+  wire  [2*DATA_WIDTH:0] adder_result; 
   wire [DATA_WIDTH-1:0] activation_function_output; 
   reg weights_valid, multiply_valid, activation_valid, final_MAC_valid, output_valid;  
   reg  last_flag_d2, last_flag_d1, last_x_valid_seen; 
 
   assign product = $signed(x_value_product_operand)*$signed(weight_product_operand);  
+  assign adder_result = $signed(sum_operand_1) + $signed(accumulated_sum); 
+  wire sum_overflow = ~(sum_operand_1[(2*DATA_WIDTH)-1]^accumulated_sum[(2*DATA_WIDTH)-1]) &
+                        (sum_operand_1[(2*DATA_WIDTH)-1] ^ adder_result[(2*DATA_WIDTH)-1]); 
+  wire sum_negative = adder_result[2*DATA_WIDTH]; 
 
   //fetch weights 
   always@(posedge clk, posedge reset)
@@ -143,32 +143,23 @@ module neuron #(
           else if(sum_overflow & !sum_negative)
               accumulated_sum <= {1'b1, {((2*DATA_WIDTH)-1){1'b0}}};
           else
-              accumulated_sum <= adder_result;
+              accumulated_sum <= adder_result[(2*DATA_WIDTH)-1:0];
       end
   end  
+
+
   //combinational read bias DRAM
   bias_mem #(.BIAS_WIDTH(BIAS_WIDTH), .BIAS_FILE(BIAS_FILE)) BIAS_MEMORY(
     .bias_out(bias_mem_out)
   ); 
+
+
   weight_mem #(.N_WEIGHTS(N_WEIGHTS),.WEIGHT_WIDTH(WEIGHT_WIDTH),.WEIGHT_ADDRESS_WIDTH($clog2(N_WEIGHTS)), .WEIGHT_FILE(WEIGHT_FILE)) WEIGHT_MEMORY(
     .clk(clk), 
     .read_en(weight_mem_read_enable), 
     .weight_read_addr(weight_mem_read_addr), 
     .weight_out(weight_mem_out)
   );
-
-
-
- signed_adder #(.WIDTH(2*DATA_WIDTH)) SIGNED_ADDER (
-    .x(sum_operand_1),
-    .y(accumulated_sum),
-    .s(adder_result),
-    .add_sub(0), 
-    .overflow(sum_overflow), 
-    .negative(sum_negative), 
-    .zero(sum_zero), 
-    .cout(sum_cout)
- ); 
 
  generate
   if(ACC_TYPE == "reLU")
@@ -179,14 +170,15 @@ module neuron #(
       .data_out(activation_function_output)
     ); 
   end
-  else if(ACC_TYPE == "linear")
+ else if(ACC_TYPE == "linear")
   begin 
-      wire [6:0] overflow_check = accumulated_sum[31:25];
+      // Overflow check now looks at the top 9 bits [31:23]
+      wire [8:0] overflow_check = accumulated_sum[31:23]; 
       
       assign activation_function_output =
-      (overflow_check != 7'b0000000 && overflow_check != 7'b1111111) ?
+      (overflow_check != 9'b000000000 && overflow_check != 9'b111111111) ?
           (accumulated_sum[31] ? 16'h8000 : 16'h7FFF) : 
-          accumulated_sum[25:10];                       
+          accumulated_sum[23:8]; // Drops the bottom 8 fractional bits
   end
   else
   begin:sigmoid

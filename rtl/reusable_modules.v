@@ -75,14 +75,14 @@ module chained_mux(x,y,s,out);
 	generate 
 		for(i=0; i< WIDTH; i = i+1)
 		begin : SINGLE_MUX
-			mux MUX(.x(x[i]),.y(y[i]),.s(s),.out(out[i])); 
+			my_mux MUX(.x(x[i]),.y(y[i]),.s(s),.out(out[i])); 
 		end 
 	endgenerate 
 endmodule 
 
 
 //2 to 1 MUX implementation 
-module mux(x,y,s,out);
+module my_mux(x,y,s,out);
 	input x,y,s; 
 	output out; 
 	assign out = s?x:y; 

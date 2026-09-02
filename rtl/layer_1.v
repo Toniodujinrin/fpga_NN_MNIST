@@ -4,8 +4,8 @@ module layer_1
   parameter
   DATA_WIDTH            = 16,
   WEIGHT_WIDTH          = 16,
-  N_WEIGHTS             = 784, 
-  N_NEURONS             = 30,
+  N_WEIGHTS             = 784,
+  N_NEURONS             = 64,
   N_INPUTS              = 784,
   SIGMOID_INPUT_WIDTH   = 5,
   ACC_TYPE              = "reLU",
@@ -717,6 +717,788 @@ neuron
     .neuron_output(output_values[(((29+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
     .output_valid_flag(outputs_valid_array[29]), 
     .neuron_ready(neuron_ready_array[29])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_30.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_30.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_30
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((30+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[30]), 
+    .neuron_ready(neuron_ready_array[30])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_31.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_31.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_31
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((31+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[31]), 
+    .neuron_ready(neuron_ready_array[31])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_32.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_32.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_32
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((32+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[32]), 
+    .neuron_ready(neuron_ready_array[32])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_33.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_33.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_33
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((33+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[33]), 
+    .neuron_ready(neuron_ready_array[33])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_34.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_34.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_34
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((34+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[34]), 
+    .neuron_ready(neuron_ready_array[34])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_35.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_35.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_35
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((35+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[35]), 
+    .neuron_ready(neuron_ready_array[35])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_36.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_36.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_36
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((36+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[36]), 
+    .neuron_ready(neuron_ready_array[36])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_37.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_37.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_37
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((37+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[37]), 
+    .neuron_ready(neuron_ready_array[37])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_38.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_38.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_38
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((38+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[38]), 
+    .neuron_ready(neuron_ready_array[38])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_39.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_39.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_39
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((39+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[39]), 
+    .neuron_ready(neuron_ready_array[39])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_40.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_40.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_40
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((40+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[40]), 
+    .neuron_ready(neuron_ready_array[40])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_41.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_41.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_41
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((41+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[41]), 
+    .neuron_ready(neuron_ready_array[41])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_42.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_42.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_42
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((42+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[42]), 
+    .neuron_ready(neuron_ready_array[42])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_43.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_43.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_43
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((43+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[43]), 
+    .neuron_ready(neuron_ready_array[43])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_44.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_44.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_44
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((44+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[44]), 
+    .neuron_ready(neuron_ready_array[44])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_45.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_45.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_45
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((45+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[45]), 
+    .neuron_ready(neuron_ready_array[45])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_46.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_46.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_46
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((46+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[46]), 
+    .neuron_ready(neuron_ready_array[46])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_47.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_47.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_47
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((47+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[47]), 
+    .neuron_ready(neuron_ready_array[47])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_48.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_48.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_48
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((48+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[48]), 
+    .neuron_ready(neuron_ready_array[48])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_49.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_49.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_49
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((49+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[49]), 
+    .neuron_ready(neuron_ready_array[49])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_50.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_50.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_50
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((50+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[50]), 
+    .neuron_ready(neuron_ready_array[50])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_51.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_51.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_51
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((51+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[51]), 
+    .neuron_ready(neuron_ready_array[51])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_52.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_52.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_52
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((52+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[52]), 
+    .neuron_ready(neuron_ready_array[52])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_53.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_53.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_53
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((53+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[53]), 
+    .neuron_ready(neuron_ready_array[53])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_54.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_54.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_54
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((54+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[54]), 
+    .neuron_ready(neuron_ready_array[54])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_55.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_55.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_55
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((55+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[55]), 
+    .neuron_ready(neuron_ready_array[55])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_56.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_56.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_56
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((56+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[56]), 
+    .neuron_ready(neuron_ready_array[56])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_57.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_57.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_57
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((57+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[57]), 
+    .neuron_ready(neuron_ready_array[57])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_58.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_58.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_58
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((58+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[58]), 
+    .neuron_ready(neuron_ready_array[58])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_59.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_59.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_59
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((59+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[59]), 
+    .neuron_ready(neuron_ready_array[59])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_60.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_60.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_60
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((60+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[60]), 
+    .neuron_ready(neuron_ready_array[60])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_61.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_61.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_61
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((61+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[61]), 
+    .neuron_ready(neuron_ready_array[61])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_62.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_62.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_62
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((62+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[62]), 
+    .neuron_ready(neuron_ready_array[62])
+);
+
+neuron 
+#(
+    .DATA_WIDTH(DATA_WIDTH),
+    .WEIGHT_WIDTH(WEIGHT_WIDTH),
+    .N_WEIGHTS(N_WEIGHTS),
+    .SIGMOID_INPUT_WIDTH(SIGMOID_INPUT_WIDTH),
+    .ACC_TYPE(ACC_TYPE),
+    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH),
+    .WEIGHT_FILE("weights/weight_file_layer_1_neuron_63.mem"),
+    .BIAS_FILE("biases/bias_file_layer_1_neuron_63.mem"),
+    .BIAS_WIDTH(BIAS_WIDTH)
+)
+    NEURON_63
+(
+    .clk(clk),
+    .reset(reset),
+    .x_value(input_value),
+    .x_valid(input_valid),
+    .neuron_output(output_values[(((63+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
+    .output_valid_flag(outputs_valid_array[63]), 
+    .neuron_ready(neuron_ready_array[63])
 );
 
 

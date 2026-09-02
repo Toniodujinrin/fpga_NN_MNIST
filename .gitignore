@@ -1,20 +1,33 @@
 # Quartus project files - generated outputs
 *.qpf
+*.qsf
+*.qsys
 *.qsf.bak
 *.qdf
 *.qws
+*.sopcinfo
+*_hw.tcl
+.qsys_edit/
+fpga_NN_MNIST/
+serv_req_info.txt
+c5_pin_model_dump.txt
 
 # Compilation output directories
 db/
 incremental_db/
 output_files/
 simulation/
-obj_dir 
+obj_dir/
+software/
 weights/
 data/
 biases/
 inputs/
+test_images/
 training/.venv/
+
+# Editor/IDE config
+.vscode/
 
 # Quartus generated files
 *.rpt
@@ -50,6 +63,10 @@ training/.venv/
 *.lock
 *.bak
 *~
+
+# Scratch/test data files
+input_1.mif
+image_de_pixelizer.py
 
 # ModelSim / QuestaSim simulation
 work/

@@ -9,9 +9,9 @@ import numpy as np
 class MNISTNet(nn.Module):
     def __init__(self):
         super().__init__()
-        self.fc1 = nn.Linear(784,30)
-        self.fc2 = nn.Linear(30,30)
-        self.fc3 = nn.Linear(30,10)
+        self.fc1 = nn.Linear(784,64)
+        self.fc2 = nn.Linear(64,64)
+        self.fc3 = nn.Linear(64,10)
         self.relu = nn.ReLU()
         
     def forward(self,x):
@@ -66,7 +66,7 @@ os.makedirs("biases",exist_ok=True)
 # EXPORT FUNCTION
 # ==================================================
 
-SCALE_FRAC = 10                     # Q1.14
+SCALE_FRAC = 8                    
 SCALE_WEIGHT = 1 << SCALE_FRAC      # 16384
 SCALE_BIAS   = 1 << (2 * SCALE_FRAC)  # 268435456  (x*w scaling)
 

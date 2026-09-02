@@ -4,7 +4,7 @@ module layer_3
   parameter
   DATA_WIDTH            = 16,
   WEIGHT_WIDTH          = 16,
-  N_WEIGHTS             = 784, 
+  N_WEIGHTS             = 784,
   N_NEURONS             = 10,
   N_INPUTS              = 784,
   SIGMOID_INPUT_WIDTH   = 5,
