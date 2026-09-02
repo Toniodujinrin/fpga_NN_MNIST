@@ -18,7 +18,13 @@ network
   output reg network_inference_ready, //true if the network has just completed an inference, or if no inference has started at all 
   output wire network_output_valid, 
   input wire network_input_valid, 
-  input wire inference_start
+  input wire inference_start,
+  input wire model_write_valid,
+  input wire [1:0] model_layer,
+  input wire [5:0] model_neuron,
+  input wire [9:0] model_index,
+  input wire model_is_bias,
+  input wire [31:0] model_write_data
 ); 
   localparam WEIGHT_WIDTH = DATA_WIDTH; 
   localparam BIAS_WIDTH = 2*DATA_WIDTH; 
@@ -75,7 +81,12 @@ network
     .input_value(network_input_value), 
     .output_values(layer_1_output_values), 
     .outputs_valid(layer_1_output_valid), 
-	 .layer_ready(layer_1_ready)
+	 .layer_ready(layer_1_ready),
+    .cfg_write_enable(model_write_valid && model_layer == 2'd1),
+    .cfg_neuron(model_neuron),
+    .cfg_index(model_index),
+    .cfg_is_bias(model_is_bias),
+    .cfg_write_data(model_write_data)
   ); 
   
   
@@ -134,7 +145,12 @@ network
     .input_value(layer_2_input_value), 
     .output_values(layer_2_output_values), 
     .outputs_valid(layer_2_output_valid), 
-	 .layer_ready(layer_2_ready)
+	 .layer_ready(layer_2_ready),
+    .cfg_write_enable(model_write_valid && model_layer == 2'd2),
+    .cfg_neuron(model_neuron),
+    .cfg_index(model_index),
+    .cfg_is_bias(model_is_bias),
+    .cfg_write_data(model_write_data)
 
   ); 
   
@@ -193,7 +209,12 @@ network
     .input_value(layer_3_input_value), 
     .output_values(layer_3_output_values), 
     .outputs_valid(layer_3_output_valid), 
-	 .layer_ready(layer_3_ready)
+	 .layer_ready(layer_3_ready),
+    .cfg_write_enable(model_write_valid && model_layer == 2'd3),
+    .cfg_neuron(model_neuron),
+    .cfg_index(model_index),
+    .cfg_is_bias(model_is_bias),
+    .cfg_write_data(model_write_data)
   ); 
 
   

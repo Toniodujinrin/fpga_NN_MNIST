@@ -1,4 +1,3 @@
-
 module layer_1
 #(
   parameter
@@ -12,23 +11,28 @@ module layer_1
   BIAS_WIDTH            = 32
 )
 (
-  input                              clk,
-  input                              reset,
-  input                              input_valid,
-  input      [DATA_WIDTH-1:0]        input_value,
-  output [(DATA_WIDTH*N_NEURONS)-1:0] output_values,
-  output                        outputs_valid, 
-  output                        layer_ready
+  input                               clk,
+  input                               reset,
+  input                               input_valid,
+  input      [DATA_WIDTH-1:0]         input_value,
+  output     [(DATA_WIDTH*N_NEURONS)-1:0] output_values,
+  output                              outputs_valid,
+  output                              layer_ready,
+  input                               cfg_write_enable,
+  input      [5:0]                    cfg_neuron,
+  input      [9:0]                    cfg_index,
+  input                               cfg_is_bias,
+  input      [BIAS_WIDTH-1:0]         cfg_write_data
 );
 
-wire [N_NEURONS-1:0]               outputs_valid_array;
-wire [N_NEURONS-1:0]               neuron_ready_array; 
-assign outputs_valid = &outputs_valid_array; 
-assign layer_ready  = &neuron_ready_array; 
+localparam WEIGHT_ADDRESS_WIDTH = $clog2(N_WEIGHTS);
+wire [N_NEURONS-1:0] outputs_valid_array;
+wire [N_NEURONS-1:0] neuron_ready_array;
+assign outputs_valid = &outputs_valid_array;
+assign layer_ready = &neuron_ready_array;
 
 
-
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -46,11 +50,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((0+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[0]), 
-    .neuron_ready(neuron_ready_array[0])
+    .output_valid_flag(outputs_valid_array[0]),
+    .neuron_ready(neuron_ready_array[0]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd0),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -68,11 +76,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((1+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[1]), 
-    .neuron_ready(neuron_ready_array[1])
+    .output_valid_flag(outputs_valid_array[1]),
+    .neuron_ready(neuron_ready_array[1]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd1),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -90,11 +102,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((2+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[2]), 
-    .neuron_ready(neuron_ready_array[2])
+    .output_valid_flag(outputs_valid_array[2]),
+    .neuron_ready(neuron_ready_array[2]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd2),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -112,11 +128,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((3+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[3]), 
-    .neuron_ready(neuron_ready_array[3])
+    .output_valid_flag(outputs_valid_array[3]),
+    .neuron_ready(neuron_ready_array[3]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd3),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -134,11 +154,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((4+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[4]), 
-    .neuron_ready(neuron_ready_array[4])
+    .output_valid_flag(outputs_valid_array[4]),
+    .neuron_ready(neuron_ready_array[4]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd4),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -156,11 +180,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((5+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[5]), 
-    .neuron_ready(neuron_ready_array[5])
+    .output_valid_flag(outputs_valid_array[5]),
+    .neuron_ready(neuron_ready_array[5]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd5),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -178,11 +206,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((6+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[6]), 
-    .neuron_ready(neuron_ready_array[6])
+    .output_valid_flag(outputs_valid_array[6]),
+    .neuron_ready(neuron_ready_array[6]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd6),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -200,11 +232,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((7+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[7]), 
-    .neuron_ready(neuron_ready_array[7])
+    .output_valid_flag(outputs_valid_array[7]),
+    .neuron_ready(neuron_ready_array[7]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd7),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -222,11 +258,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((8+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[8]), 
-    .neuron_ready(neuron_ready_array[8])
+    .output_valid_flag(outputs_valid_array[8]),
+    .neuron_ready(neuron_ready_array[8]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd8),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -244,11 +284,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((9+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[9]), 
-    .neuron_ready(neuron_ready_array[9])
+    .output_valid_flag(outputs_valid_array[9]),
+    .neuron_ready(neuron_ready_array[9]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd9),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -266,11 +310,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((10+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[10]), 
-    .neuron_ready(neuron_ready_array[10])
+    .output_valid_flag(outputs_valid_array[10]),
+    .neuron_ready(neuron_ready_array[10]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd10),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -288,11 +336,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((11+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[11]), 
-    .neuron_ready(neuron_ready_array[11])
+    .output_valid_flag(outputs_valid_array[11]),
+    .neuron_ready(neuron_ready_array[11]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd11),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -310,11 +362,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((12+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[12]), 
-    .neuron_ready(neuron_ready_array[12])
+    .output_valid_flag(outputs_valid_array[12]),
+    .neuron_ready(neuron_ready_array[12]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd12),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -332,11 +388,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((13+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[13]), 
-    .neuron_ready(neuron_ready_array[13])
+    .output_valid_flag(outputs_valid_array[13]),
+    .neuron_ready(neuron_ready_array[13]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd13),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -354,11 +414,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((14+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[14]), 
-    .neuron_ready(neuron_ready_array[14])
+    .output_valid_flag(outputs_valid_array[14]),
+    .neuron_ready(neuron_ready_array[14]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd14),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -376,11 +440,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((15+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[15]), 
-    .neuron_ready(neuron_ready_array[15])
+    .output_valid_flag(outputs_valid_array[15]),
+    .neuron_ready(neuron_ready_array[15]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd15),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -398,11 +466,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((16+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[16]), 
-    .neuron_ready(neuron_ready_array[16])
+    .output_valid_flag(outputs_valid_array[16]),
+    .neuron_ready(neuron_ready_array[16]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd16),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -420,11 +492,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((17+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[17]), 
-    .neuron_ready(neuron_ready_array[17])
+    .output_valid_flag(outputs_valid_array[17]),
+    .neuron_ready(neuron_ready_array[17]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd17),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -442,11 +518,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((18+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[18]), 
-    .neuron_ready(neuron_ready_array[18])
+    .output_valid_flag(outputs_valid_array[18]),
+    .neuron_ready(neuron_ready_array[18]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd18),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -464,11 +544,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((19+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[19]), 
-    .neuron_ready(neuron_ready_array[19])
+    .output_valid_flag(outputs_valid_array[19]),
+    .neuron_ready(neuron_ready_array[19]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd19),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -486,11 +570,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((20+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[20]), 
-    .neuron_ready(neuron_ready_array[20])
+    .output_valid_flag(outputs_valid_array[20]),
+    .neuron_ready(neuron_ready_array[20]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd20),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -508,11 +596,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((21+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[21]), 
-    .neuron_ready(neuron_ready_array[21])
+    .output_valid_flag(outputs_valid_array[21]),
+    .neuron_ready(neuron_ready_array[21]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd21),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -530,11 +622,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((22+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[22]), 
-    .neuron_ready(neuron_ready_array[22])
+    .output_valid_flag(outputs_valid_array[22]),
+    .neuron_ready(neuron_ready_array[22]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd22),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -552,11 +648,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((23+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[23]), 
-    .neuron_ready(neuron_ready_array[23])
+    .output_valid_flag(outputs_valid_array[23]),
+    .neuron_ready(neuron_ready_array[23]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd23),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -574,11 +674,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((24+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[24]), 
-    .neuron_ready(neuron_ready_array[24])
+    .output_valid_flag(outputs_valid_array[24]),
+    .neuron_ready(neuron_ready_array[24]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd24),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -596,11 +700,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((25+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[25]), 
-    .neuron_ready(neuron_ready_array[25])
+    .output_valid_flag(outputs_valid_array[25]),
+    .neuron_ready(neuron_ready_array[25]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd25),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -618,11 +726,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((26+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[26]), 
-    .neuron_ready(neuron_ready_array[26])
+    .output_valid_flag(outputs_valid_array[26]),
+    .neuron_ready(neuron_ready_array[26]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd26),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -640,11 +752,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((27+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[27]), 
-    .neuron_ready(neuron_ready_array[27])
+    .output_valid_flag(outputs_valid_array[27]),
+    .neuron_ready(neuron_ready_array[27]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd27),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -662,11 +778,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((28+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[28]), 
-    .neuron_ready(neuron_ready_array[28])
+    .output_valid_flag(outputs_valid_array[28]),
+    .neuron_ready(neuron_ready_array[28]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd28),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -684,11 +804,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((29+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[29]), 
-    .neuron_ready(neuron_ready_array[29])
+    .output_valid_flag(outputs_valid_array[29]),
+    .neuron_ready(neuron_ready_array[29]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd29),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -706,11 +830,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((30+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[30]), 
-    .neuron_ready(neuron_ready_array[30])
+    .output_valid_flag(outputs_valid_array[30]),
+    .neuron_ready(neuron_ready_array[30]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd30),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -728,11 +856,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((31+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[31]), 
-    .neuron_ready(neuron_ready_array[31])
+    .output_valid_flag(outputs_valid_array[31]),
+    .neuron_ready(neuron_ready_array[31]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd31),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -750,11 +882,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((32+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[32]), 
-    .neuron_ready(neuron_ready_array[32])
+    .output_valid_flag(outputs_valid_array[32]),
+    .neuron_ready(neuron_ready_array[32]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd32),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -772,11 +908,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((33+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[33]), 
-    .neuron_ready(neuron_ready_array[33])
+    .output_valid_flag(outputs_valid_array[33]),
+    .neuron_ready(neuron_ready_array[33]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd33),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -794,11 +934,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((34+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[34]), 
-    .neuron_ready(neuron_ready_array[34])
+    .output_valid_flag(outputs_valid_array[34]),
+    .neuron_ready(neuron_ready_array[34]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd34),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -816,11 +960,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((35+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[35]), 
-    .neuron_ready(neuron_ready_array[35])
+    .output_valid_flag(outputs_valid_array[35]),
+    .neuron_ready(neuron_ready_array[35]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd35),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -838,11 +986,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((36+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[36]), 
-    .neuron_ready(neuron_ready_array[36])
+    .output_valid_flag(outputs_valid_array[36]),
+    .neuron_ready(neuron_ready_array[36]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd36),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -860,11 +1012,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((37+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[37]), 
-    .neuron_ready(neuron_ready_array[37])
+    .output_valid_flag(outputs_valid_array[37]),
+    .neuron_ready(neuron_ready_array[37]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd37),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -882,11 +1038,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((38+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[38]), 
-    .neuron_ready(neuron_ready_array[38])
+    .output_valid_flag(outputs_valid_array[38]),
+    .neuron_ready(neuron_ready_array[38]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd38),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -904,11 +1064,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((39+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[39]), 
-    .neuron_ready(neuron_ready_array[39])
+    .output_valid_flag(outputs_valid_array[39]),
+    .neuron_ready(neuron_ready_array[39]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd39),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -926,11 +1090,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((40+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[40]), 
-    .neuron_ready(neuron_ready_array[40])
+    .output_valid_flag(outputs_valid_array[40]),
+    .neuron_ready(neuron_ready_array[40]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd40),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -948,11 +1116,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((41+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[41]), 
-    .neuron_ready(neuron_ready_array[41])
+    .output_valid_flag(outputs_valid_array[41]),
+    .neuron_ready(neuron_ready_array[41]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd41),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -970,11 +1142,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((42+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[42]), 
-    .neuron_ready(neuron_ready_array[42])
+    .output_valid_flag(outputs_valid_array[42]),
+    .neuron_ready(neuron_ready_array[42]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd42),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -992,11 +1168,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((43+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[43]), 
-    .neuron_ready(neuron_ready_array[43])
+    .output_valid_flag(outputs_valid_array[43]),
+    .neuron_ready(neuron_ready_array[43]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd43),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -1014,11 +1194,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((44+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[44]), 
-    .neuron_ready(neuron_ready_array[44])
+    .output_valid_flag(outputs_valid_array[44]),
+    .neuron_ready(neuron_ready_array[44]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd44),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -1036,11 +1220,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((45+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[45]), 
-    .neuron_ready(neuron_ready_array[45])
+    .output_valid_flag(outputs_valid_array[45]),
+    .neuron_ready(neuron_ready_array[45]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd45),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -1058,11 +1246,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((46+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[46]), 
-    .neuron_ready(neuron_ready_array[46])
+    .output_valid_flag(outputs_valid_array[46]),
+    .neuron_ready(neuron_ready_array[46]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd46),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -1080,11 +1272,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((47+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[47]), 
-    .neuron_ready(neuron_ready_array[47])
+    .output_valid_flag(outputs_valid_array[47]),
+    .neuron_ready(neuron_ready_array[47]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd47),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -1102,11 +1298,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((48+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[48]), 
-    .neuron_ready(neuron_ready_array[48])
+    .output_valid_flag(outputs_valid_array[48]),
+    .neuron_ready(neuron_ready_array[48]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd48),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -1124,11 +1324,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((49+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[49]), 
-    .neuron_ready(neuron_ready_array[49])
+    .output_valid_flag(outputs_valid_array[49]),
+    .neuron_ready(neuron_ready_array[49]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd49),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -1146,11 +1350,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((50+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[50]), 
-    .neuron_ready(neuron_ready_array[50])
+    .output_valid_flag(outputs_valid_array[50]),
+    .neuron_ready(neuron_ready_array[50]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd50),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -1168,11 +1376,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((51+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[51]), 
-    .neuron_ready(neuron_ready_array[51])
+    .output_valid_flag(outputs_valid_array[51]),
+    .neuron_ready(neuron_ready_array[51]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd51),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -1190,11 +1402,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((52+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[52]), 
-    .neuron_ready(neuron_ready_array[52])
+    .output_valid_flag(outputs_valid_array[52]),
+    .neuron_ready(neuron_ready_array[52]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd52),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -1212,11 +1428,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((53+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[53]), 
-    .neuron_ready(neuron_ready_array[53])
+    .output_valid_flag(outputs_valid_array[53]),
+    .neuron_ready(neuron_ready_array[53]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd53),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -1234,11 +1454,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((54+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[54]), 
-    .neuron_ready(neuron_ready_array[54])
+    .output_valid_flag(outputs_valid_array[54]),
+    .neuron_ready(neuron_ready_array[54]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd54),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -1256,11 +1480,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((55+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[55]), 
-    .neuron_ready(neuron_ready_array[55])
+    .output_valid_flag(outputs_valid_array[55]),
+    .neuron_ready(neuron_ready_array[55]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd55),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -1278,11 +1506,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((56+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[56]), 
-    .neuron_ready(neuron_ready_array[56])
+    .output_valid_flag(outputs_valid_array[56]),
+    .neuron_ready(neuron_ready_array[56]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd56),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -1300,11 +1532,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((57+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[57]), 
-    .neuron_ready(neuron_ready_array[57])
+    .output_valid_flag(outputs_valid_array[57]),
+    .neuron_ready(neuron_ready_array[57]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd57),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -1322,11 +1558,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((58+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[58]), 
-    .neuron_ready(neuron_ready_array[58])
+    .output_valid_flag(outputs_valid_array[58]),
+    .neuron_ready(neuron_ready_array[58]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd58),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -1344,11 +1584,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((59+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[59]), 
-    .neuron_ready(neuron_ready_array[59])
+    .output_valid_flag(outputs_valid_array[59]),
+    .neuron_ready(neuron_ready_array[59]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd59),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -1366,11 +1610,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((60+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[60]), 
-    .neuron_ready(neuron_ready_array[60])
+    .output_valid_flag(outputs_valid_array[60]),
+    .neuron_ready(neuron_ready_array[60]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd60),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -1388,11 +1636,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((61+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[61]), 
-    .neuron_ready(neuron_ready_array[61])
+    .output_valid_flag(outputs_valid_array[61]),
+    .neuron_ready(neuron_ready_array[61]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd61),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -1410,11 +1662,15 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((62+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[62]), 
-    .neuron_ready(neuron_ready_array[62])
+    .output_valid_flag(outputs_valid_array[62]),
+    .neuron_ready(neuron_ready_array[62]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd62),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
 
-neuron 
+neuron
 #(
     .DATA_WIDTH(DATA_WIDTH),
     .WEIGHT_WIDTH(WEIGHT_WIDTH),
@@ -1432,9 +1688,12 @@ neuron
     .x_value(input_value),
     .x_valid(input_valid),
     .neuron_output(output_values[(((63+1)*DATA_WIDTH)-1)-:DATA_WIDTH]),
-    .output_valid_flag(outputs_valid_array[63]), 
-    .neuron_ready(neuron_ready_array[63])
+    .output_valid_flag(outputs_valid_array[63]),
+    .neuron_ready(neuron_ready_array[63]),
+    .cfg_write_enable(cfg_write_enable && cfg_neuron == 6'd63),
+    .cfg_is_bias(cfg_is_bias),
+    .cfg_weight_addr(cfg_index[WEIGHT_ADDRESS_WIDTH-1:0]),
+    .cfg_write_data(cfg_write_data)
 );
-
 
 endmodule

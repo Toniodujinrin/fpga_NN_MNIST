@@ -61,8 +61,16 @@ module fpga_NN_MNIST_RTL
 	wire network_inference_sample_ready; 
 	wire network_inference_ready;
 	reg inference_start; 
+  wire network_start;
+  wire network_idle = (current_state == IDLE);
   wire [DATA_WIDTH-1:0] network_input_data; 
   wire network_input_data_valid; 
+  wire model_write_valid;
+  wire [1:0] model_layer;
+  wire [5:0] model_neuron;
+  wire [9:0] model_index;
+  wire model_is_bias;
+  wire [31:0] model_write_data;
   //max finder signals
 	wire [(DATA_WIDTH*N_NEURONS_LAYER_3)-1:0] network_output; 
   wire network_output_valid; 
@@ -90,7 +98,13 @@ module fpga_NN_MNIST_RTL
     .network_input_valid(network_input_data_valid), 
     .network_output(network_output),  
     .network_output_valid(network_output_valid), 
-	 .inference_start(inference_start)
+	 .inference_start(inference_start),
+    .model_write_valid(model_write_valid),
+    .model_layer(model_layer),
+    .model_neuron(model_neuron),
+    .model_index(model_index),
+    .model_is_bias(model_is_bias),
+    .model_write_data(model_write_data)
   ); 
   
    max_finder
@@ -110,10 +124,12 @@ module fpga_NN_MNIST_RTL
   
   axi_slave_wrapper
   #(
-    .DATA_WIDTH(DATA_WIDTH), 
-    .ADDR_WIDTH(AXI_ADDR_WIDTH) , 
-    .WRITE_STROBE_WIDTH(AXI_WRITE_STROBE_WIDTH) , 
-    .WRITE_RESPONSE_WIDTH(AXI_WRITE_RESPONSE_WIDTH) 
+    .ADDR_WIDTH(AXI_ADDR_WIDTH),
+    .DATA_WIDTH(AXI_WRITE_DATA_WIDTH),
+    .N_NETWORK_INPUTS(N_NETWORK_INPUTS),
+    .N_NEURONS_LAYER_1(N_NEURONS_LAYER_1),
+    .N_NEURONS_LAYER_2(N_NEURONS_LAYER_2),
+    .N_NEURONS_LAYER_3(N_NEURONS_LAYER_3)
   )
   AXI
   (
@@ -148,11 +164,19 @@ module fpga_NN_MNIST_RTL
     .r_resp(rresp), 
 
     //network signals 
+    .network_idle(network_idle),
     .network_ready(network_inference_sample_ready), 
     .network_output_data(nn_output), 
     .network_output_data_valid(nn_output_valid), 
+    .network_start(network_start),
     .network_input_data(network_input_data), 
-    .network_input_data_valid(network_input_data_valid) 
+    .network_input_data_valid(network_input_data_valid),
+    .model_write_valid(model_write_valid),
+    .model_layer(model_layer),
+    .model_neuron(model_neuron),
+    .model_index(model_index),
+    .model_is_bias(model_is_bias),
+    .model_write_data(model_write_data)
   );  
 
 
@@ -161,14 +185,14 @@ module fpga_NN_MNIST_RTL
     if(!reset_n)
     begin 
       current_state <= IDLE; 
-      inference_start <= 1; 
+      inference_start <= 0;
     end
     else
     begin 
       case(current_state)
         IDLE: 
         begin 
-          if(network_inference_ready)
+          if(network_start)
           begin 
             inference_start <= 1; 
             current_state <= INFERENCE; 
@@ -192,14 +216,17 @@ module fpga_NN_MNIST_RTL
             inference_start <= 0; 
           end 
         end
+        default:
+        begin
+          current_state <= IDLE;
+          inference_start <= 0;
+        end
       endcase
     end 
   end
   
 
   endmodule
-
-
 
 
 

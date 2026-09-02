@@ -15,12 +15,17 @@ module neuron #(
   input x_valid, 
   output reg [DATA_WIDTH-1:0] neuron_output, 
   output reg output_valid_flag, 
-  output reg neuron_ready
+  output reg neuron_ready,
+  input cfg_write_enable,
+  input cfg_is_bias,
+  input [$clog2(N_WEIGHTS)-1:0] cfg_weight_addr,
+  input [BIAS_WIDTH-1:0] cfg_write_data
 ); 
-  localparam WEIGHT_ADDRESS_WIDTH = $clog2(N_WEIGHTS); 
+  localparam WEIGHT_ADDRESS_WIDTH = $clog2(N_WEIGHTS);
+  localparam INPUT_COUNT_WIDTH = $clog2(N_WEIGHTS + 1);
   reg weight_mem_read_enable; 
   reg [WEIGHT_ADDRESS_WIDTH-1:0] weight_mem_read_addr; 
-  reg [WEIGHT_ADDRESS_WIDTH-1:0] current_address; 
+  reg [INPUT_COUNT_WIDTH-1:0] current_address;
   reg [DATA_WIDTH-1:0] x_value_reg; 
   reg [DATA_WIDTH-1:0] x_value_reg_delayed; 
   reg x_value_delay; 
@@ -33,7 +38,7 @@ module neuron #(
   reg [2*DATA_WIDTH-1:0] sum_operand_1; 
   wire  [2*DATA_WIDTH:0] adder_result; 
   wire [DATA_WIDTH-1:0] activation_function_output; 
-  reg weights_valid, multiply_valid, activation_valid, final_MAC_valid, output_valid;  
+  reg weights_valid, multiply_valid, bias_add_valid, activation_valid, final_MAC_valid, output_valid;
   reg  last_flag_d2, last_flag_d1, last_x_valid_seen; 
 
   assign product = $signed(x_value_product_operand)*$signed(weight_product_operand);  
@@ -63,7 +68,7 @@ module neuron #(
     end 
     else if(x_valid && neuron_ready && (current_address < N_WEIGHTS))
     begin 
-      weight_mem_read_addr   <= current_address; 
+      weight_mem_read_addr   <= current_address[WEIGHT_ADDRESS_WIDTH-1:0];
       x_value_reg            <= x_value;
       current_address        <= current_address + 1; 
       weight_mem_read_enable <= 1; 
@@ -112,7 +117,8 @@ module neuron #(
       end
       else
       begin
-          last_x_valid_seen <= x_valid && (current_address == N_WEIGHTS-1);
+          last_x_valid_seen <= x_valid && neuron_ready &&
+                               (current_address == N_WEIGHTS-1);
           last_flag_d1      <= last_x_valid_seen;
           last_flag_d2      <= last_flag_d1;
       end
@@ -135,7 +141,7 @@ module neuron #(
           accumulated_sum <= 0;
       else if(output_valid)
           accumulated_sum <= 0;
-      else if(multiply_valid | final_MAC_valid)
+      else if(multiply_valid | final_MAC_valid | bias_add_valid)
       begin
           if(sum_overflow & sum_negative)
               accumulated_sum <= {1'b0, {((2*DATA_WIDTH)-1){1'b1}}};
@@ -149,6 +155,9 @@ module neuron #(
 
   //combinational read bias DRAM
   bias_mem #(.BIAS_WIDTH(BIAS_WIDTH), .BIAS_FILE(BIAS_FILE)) BIAS_MEMORY(
+    .clk(clk),
+    .write_en(cfg_write_enable && cfg_is_bias),
+    .write_data(cfg_write_data),
     .bias_out(bias_mem_out)
   ); 
 
@@ -157,6 +166,9 @@ module neuron #(
     .clk(clk), 
     .read_en(weight_mem_read_enable), 
     .weight_read_addr(weight_mem_read_addr), 
+    .write_en(cfg_write_enable && !cfg_is_bias),
+    .weight_write_addr(cfg_weight_addr),
+    .weight_write_data(cfg_write_data[WEIGHT_WIDTH-1:0]),
     .weight_out(weight_mem_out)
   );
 
@@ -201,6 +213,7 @@ begin
     output_valid_flag <= 0; 
     neuron_output<= 0; 
     final_MAC_valid <= 0; 
+    bias_add_valid <= 0;
 	end 
   else if(output_valid)
   begin 
@@ -208,6 +221,7 @@ begin
     weights_valid     <= 0;
     multiply_valid    <= 0;
     activation_valid  <= 0;
+    bias_add_valid    <= 0;
     output_valid      <= 0;
     neuron_output <= activation_function_output; 
     output_valid_flag <= 1; 
@@ -222,10 +236,10 @@ begin
     weights_valid <= x_value_delay;
     multiply_valid <= weights_valid;
     final_MAC_valid <= multiply_valid && last_flag_d2;
-    activation_valid <= final_MAC_valid; 
+    bias_add_valid <= final_MAC_valid;
+    activation_valid <= bias_add_valid;
     output_valid <= activation_valid;
     output_valid_flag <= output_valid; 
    end
  end
 endmodule 
-

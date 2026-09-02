@@ -72,28 +72,28 @@ SCALE_BIAS   = 1 << (2 * SCALE_FRAC)  # 65536  (x*w scaling)
 
 def export_layer_weights(weights, layer_num):
     weights_np = weights.detach().numpy()
-    weights_fixed = np.round(weights_np * SCALE_WEIGHT).astype(np.int16)
+    weights_fixed = np.clip(
+        np.round(weights_np * SCALE_WEIGHT), -32768, 32767
+    ).astype(np.int16)
     os.makedirs("weights", exist_ok=True)
     for neuron_idx, row in enumerate(weights_fixed):
         filename = f"weights/weight_file_layer_{layer_num}_neuron_{neuron_idx}.mem"
         with open(filename, "w") as f:
             for value in row:
                 val = int(value)                    # ← force Python int (unlimited)
-                # proper saturation for signed 16-bit Q8.8
-                val = max(-32768, min(32767, val))
                 binary_string = f"{val & 0xFFFF:016b}"
                 f.write(binary_string + "\n")
 
 def export_layer_biases(biases, layer_num):
     bias_np = biases.detach().numpy()
-    bias_fixed = np.round(bias_np * SCALE_BIAS).astype(np.int32)
+    bias_fixed = np.clip(
+        np.round(bias_np * SCALE_BIAS), -2147483648, 2147483647
+    ).astype(np.int32)
     os.makedirs("biases", exist_ok=True)
     for neuron_idx, item in enumerate(bias_fixed):
         filename = f"biases/bias_file_layer_{layer_num}_neuron_{neuron_idx}.mem"
         with open(filename, "w") as f:
             val = int(item)                         # ← force Python int
-            # proper saturation for signed 32-bit
-            val = max(-2147483648, min(2147483647, val))
             binary_string = f"{val & 0xFFFFFFFF:032b}"
             f.write(binary_string + "\n")
 # EXPORT ALL LAYERS

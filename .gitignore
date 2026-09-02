@@ -2,6 +2,8 @@
 *.qpf
 *.qsf
 *.qsys
+!fpga_NN_MNIST.qsys
+!fpga_NN_MNIST.qsf
 *.qsf.bak
 *.qdf
 *.qws
@@ -18,7 +20,12 @@ incremental_db/
 output_files/
 simulation/
 obj_dir/
-software/
+software/*
+!software/app/
+software/app/*
+!software/app/CMakeLists.txt
+!software/app/*.c
+!software/app/*.h
 weights/
 data/
 biases/
@@ -79,3 +86,8 @@ vsim.wlf
 .DS_Store
 Thumbs.db
 desktop.ini
+
+
+#docs 
+NIOS_V_DYNAMIC_WEIGHT*
+AXI_LITE_INTERFACE.md

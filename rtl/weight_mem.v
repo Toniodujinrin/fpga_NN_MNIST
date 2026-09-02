@@ -7,8 +7,11 @@ module weight_mem
   WEIGHT_FILE = "weight_file_0_0"
 )
 (
-  input clk, read_en, 
+  input clk, read_en,
   input [WEIGHT_ADDRESS_WIDTH-1:0] weight_read_addr,
+  input write_en,
+  input [WEIGHT_ADDRESS_WIDTH-1:0] weight_write_addr,
+  input [WEIGHT_WIDTH-1:0] weight_write_data,
   output reg [WEIGHT_WIDTH-1:0] weight_out   
 ); 
 
@@ -25,7 +28,9 @@ module weight_mem
   //sequential flow infers BRAM for Vivado synthesis. 
   always@(posedge clk)
   begin
-   if(read_en)
+    if(write_en)
+      weight_memory[weight_write_addr] <= weight_write_data;
+    else if(read_en)
       weight_out <= weight_memory[weight_read_addr]; 
   end 
 
